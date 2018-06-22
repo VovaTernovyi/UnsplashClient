@@ -9,52 +9,52 @@ public class UnsplashEntity {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    public String id;
     @SerializedName("created_at")
     @Expose
-    private String createdAt;
+    public String createdAt;
     @SerializedName("updated_at")
     @Expose
-    private String updatedAt;
+    public String updatedAt;
     @SerializedName("width")
     @Expose
-    private Integer width;
+    public Integer width;
     @SerializedName("height")
     @Expose
-    private Integer height;
+    public Integer height;
     @SerializedName("color")
     @Expose
-    private String color;
+    public String color;
     @SerializedName("description")
     @Expose
-    private Object description;
+    public Object description;
     @SerializedName("urls")
     @Expose
-    private UrlsEntity urls;
+    public UrlsEntity urls;
     @SerializedName("links")
     @Expose
-    private LinkEntity links;
+    public LinkEntity links;
     @SerializedName("categories")
     @Expose
-    private List<Object> categories = null;
+    public List<Object> categories = null;
     @SerializedName("sponsored")
     @Expose
-    private Boolean sponsored;
+    public Boolean sponsored;
     @SerializedName("likes")
     @Expose
-    private Integer likes;
+    public Integer likes;
     @SerializedName("liked_by_user")
     @Expose
-    private Boolean likedByUser;
+    public Boolean likedByUser;
     @SerializedName("current_user_collections")
     @Expose
-    private List<Object> currentUserCollections = null;
+    public List<Object> currentUserCollections = null;
     @SerializedName("slug")
     @Expose
-    private Object slug;
+    public Object slug;
     @SerializedName("user")
     @Expose
-    private UserEntity user;
+    public UserEntity user;
 
     public UnsplashEntity() {
 
@@ -79,134 +79,6 @@ public class UnsplashEntity {
         this.likedByUser = likedByUser;
         this.currentUserCollections = currentUserCollections;
         this.slug = slug;
-        this.user = user;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public Object getDescription() {
-        return description;
-    }
-
-    public void setDescription(Object description) {
-        this.description = description;
-    }
-
-    public UrlsEntity getUrls() {
-        return urls;
-    }
-
-    public void setUrls(UrlsEntity urls) {
-        this.urls = urls;
-    }
-
-    public LinkEntity getLink() {
-        return links;
-    }
-
-    public void setLink(LinkEntity links) {
-        this.links = links;
-    }
-
-    public List<Object> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Object> categories) {
-        this.categories = categories;
-    }
-
-    public Boolean getSponsored() {
-        return sponsored;
-    }
-
-    public void setSponsored(Boolean sponsored) {
-        this.sponsored = sponsored;
-    }
-
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
-
-    public Boolean getLikedByUser() {
-        return likedByUser;
-    }
-
-    public void setLikedByUser(Boolean likedByUser) {
-        this.likedByUser = likedByUser;
-    }
-
-    public List<Object> getCurrentUserCollections() {
-        return currentUserCollections;
-    }
-
-    public void setCurrentUserCollections(List<Object> currentUserCollections) {
-        this.currentUserCollections = currentUserCollections;
-    }
-
-    public Object getSlug() {
-        return slug;
-    }
-
-    public void setSlug(Object slug) {
-        this.slug = slug;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
         this.user = user;
     }
 }
