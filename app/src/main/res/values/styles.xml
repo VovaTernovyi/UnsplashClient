@@ -10,12 +10,12 @@
 
     <style name="TextViewTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/colorTextHeader</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextViewBase" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textColor">@color/colorTextBase</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

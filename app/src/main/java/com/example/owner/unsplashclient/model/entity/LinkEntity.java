@@ -3,7 +3,9 @@ package com.example.owner.unsplashclient.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LinkEntity {
+import java.io.Serializable;
+
+public class LinkEntity implements Serializable {
 
     @SerializedName("self")
     @Expose

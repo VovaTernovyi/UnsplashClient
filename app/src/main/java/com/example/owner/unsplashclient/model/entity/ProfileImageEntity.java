@@ -3,7 +3,9 @@ package com.example.owner.unsplashclient.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ProfileImageEntity {
+import java.io.Serializable;
+
+public class ProfileImageEntity implements Serializable {
 
     @SerializedName("small")
     @Expose

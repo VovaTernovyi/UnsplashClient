@@ -3,9 +3,13 @@ package com.example.owner.unsplashclient.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-public class UnsplashEntity {
+public class UnsplashEntity implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -80,5 +84,18 @@ public class UnsplashEntity {
         this.currentUserCollections = currentUserCollections;
         this.slug = slug;
         this.user = user;
+    }
+
+    public String getDateFormatted(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        Date date = new Date();
+        try {
+           date = dateFormat.parse(createdAt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(date);
     }
 }

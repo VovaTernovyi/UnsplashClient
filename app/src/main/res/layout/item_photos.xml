@@ -40,8 +40,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/card_height"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:scaleType="fitXY"
-                    app:imageUrl="@{profileImage.medium}" />
+                    android:scaleType="center"
+                    app:imageUrl="@{item.urls.regular}" />
 
                 <TextView
                     android:id="@+id/user_name"
@@ -62,7 +62,7 @@
                     android:layout_below="@id/user_name"
                     android:paddingLeft="@dimen/base_margin_16dp"
                     android:paddingRight="@dimen/base_margin_16dp"
-                    android:text="@{item.createdAt}"
+                    android:text="@{item.dateFormatted}"
                     android:textAlignment="textEnd" />
 
                 <TextView
