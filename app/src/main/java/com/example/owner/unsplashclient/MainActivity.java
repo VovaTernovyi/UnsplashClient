@@ -1,5 +1,6 @@
 package com.example.owner.unsplashclient;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.owner.unsplashclient.databinding.ActivityMainBinding;
 import com.example.owner.unsplashclient.model.entity.UnsplashEntity;
 
-import static com.example.owner.unsplashclient.PhotoDetailFragment.PHOTO_DETAILS_FRAGMENT;
 import static com.example.owner.unsplashclient.PhotoListFragment.PHOTO_LIST_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,44 +42,15 @@ public class MainActivity extends AppCompatActivity {
             photoListFragment = new PhotoListFragment();
             mFragmentManager.beginTransaction()
                     .add(mBinding.actionContainer.getId(), photoListFragment, PHOTO_LIST_FRAGMENT)
-                    .setCustomAnimations(R.animator.fragment_slide_left_enter,
-                            R.animator.fragment_slide_left_exit,
-                            R.animator.fragment_slide_right_enter,
-                            R.animator.fragment_slide_right_exit)
-                    .addToBackStack(null)
                     .commit();
         } else {
-            mFragmentManager.beginTransaction().show(photoListFragment);
+            mFragmentManager.beginTransaction().show(photoListFragment).commit();
         }
     }
 
-    public void startPhotoDetailsFragment(UnsplashEntity entity) {
-        FragmentManager mFragmentManager = getSupportFragmentManager();
-        Fragment photoDetailsFragment = mFragmentManager.findFragmentByTag(PHOTO_DETAILS_FRAGMENT);
-        Fragment photoListFragment = mFragmentManager.findFragmentByTag(PHOTO_LIST_FRAGMENT);
-
-        if (photoDetailsFragment == null) {
-            photoDetailsFragment = new PhotoDetailFragment();
-            if (photoListFragment != null) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(TAG_UNSPLASH_ENTITY, entity);
-                photoDetailsFragment.setArguments(bundle);
-                mFragmentManager.beginTransaction()
-                        .replace(mBinding.actionContainer.getId(), photoDetailsFragment, PHOTO_DETAILS_FRAGMENT)
-                        .setCustomAnimations(R.animator.fragment_slide_left_enter,
-                                R.animator.fragment_slide_left_exit,
-                                R.animator.fragment_slide_right_enter,
-                                R.animator.fragment_slide_right_exit)
-                        .addToBackStack(null)
-                        .commit();
-            } else {
-                mFragmentManager.beginTransaction()
-                        .add(mBinding.actionContainer.getId(), photoDetailsFragment, PHOTO_DETAILS_FRAGMENT)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        } else {
-            mFragmentManager.beginTransaction().show(photoDetailsFragment).commit();
-        }
+    public void startPhotoDetailsActivity(UnsplashEntity entity) {
+        Intent intent = new Intent(this, PhotoDetailsActivity.class);
+        intent.putExtra(TAG_UNSPLASH_ENTITY, entity);
+        startActivity(intent);
     }
 }
