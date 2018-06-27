@@ -21,6 +21,7 @@ public class PhotoDetailFragment extends Fragment {
 
     FragmentPhotoDetailBinding mBinding;
     private UnsplashEntity mUnsplashEntity;
+    private String mImageTransitionName;
 
     public PhotoDetailFragment() {
         // Required empty public constructor
@@ -35,11 +36,15 @@ public class PhotoDetailFragment extends Fragment {
             if (getArguments().getSerializable(TAG_UNSPLASH_ENTITY) != null
                     && getArguments().getSerializable(TAG_UNSPLASH_ENTITY) instanceof UnsplashEntity) {
                 mUnsplashEntity = (UnsplashEntity) getArguments().getSerializable(TAG_UNSPLASH_ENTITY);
+//                mImageTransitionName = getArguments().getString(TRANSITION_NAME);
             }
         }
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_detail, container, false);
         mBinding.setVariable(BR.item, mUnsplashEntity);
+//        mBinding.photoImageView.setTransitionName(mImageTransitionName);
         return mBinding.getRoot();
     }
+
+
 }

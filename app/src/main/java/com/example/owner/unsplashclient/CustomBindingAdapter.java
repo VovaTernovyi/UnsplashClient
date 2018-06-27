@@ -11,7 +11,6 @@ public class CustomBindingAdapter {
     public static void loadImage(ImageView view, String imageUrl) {
         Picasso.get()
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_launcher_background)
                 .into(view);
     }
 }

@@ -3,9 +3,12 @@ package com.example.owner.unsplashclient;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import com.example.owner.unsplashclient.databinding.ActivityMainBinding;
 import com.example.owner.unsplashclient.model.entity.UnsplashEntity;
@@ -15,6 +18,7 @@ import static com.example.owner.unsplashclient.PhotoListFragment.PHOTO_LIST_FRAG
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG_UNSPLASH_ENTITY = "TAG_UNSPLASH_ENTITY";
+    public static final String EXTRA_IMAGE_TRANSITION_NAME = "EXTRA_IMAGE_TRANSITION_NAME";
 
     ActivityMainBinding mBinding;
 
@@ -48,9 +52,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void startPhotoDetailsActivity(UnsplashEntity entity) {
+    public void startPhotoDetailsActivity(UnsplashEntity entity, ImageView sharedImageView) {
         Intent intent = new Intent(this, PhotoDetailsActivity.class);
         intent.putExtra(TAG_UNSPLASH_ENTITY, entity);
+        intent.putExtra(EXTRA_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(sharedImageView));
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                sharedImageView,
+                ViewCompat.getTransitionName(sharedImageView));
+
         startActivity(intent);
     }
 }

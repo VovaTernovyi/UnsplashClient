@@ -1,14 +1,17 @@
 package com.example.owner.unsplashclient;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.owner.unsplashclient.databinding.FragmentPhotoListBinding;
@@ -29,7 +32,7 @@ public class PhotoListFragment extends Fragment implements MyView {
 
     FragmentPhotoListBinding mBinding;
 
-    private UnsplashViewModel mViewModel;
+    private UnsplashViewModel mUnsplashViewModel;
     private List<UnsplashEntity> mCollection = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
@@ -54,14 +57,14 @@ public class PhotoListFragment extends Fragment implements MyView {
         mRecyclerView = mBinding.recyclerView;
         mRecyclerView.setHasFixedSize(true);
 
-        OnPhotoListItemClick onPhotoListItemClick = (UnsplashEntity entity) -> {
-                if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).startPhotoDetailsFragment(entity);
-                }
+        OnPhotoListItemClick onPhotoListItemClick = (UnsplashEntity entity, ImageView imageView) -> {
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).startPhotoDetailsActivity(entity, imageView);
+            }
         };
 
         mAdapter = new PhotosAdapter(onPhotoListItemClick);
-        mLayoutManager = new StaggeredGridLayoutManager(2,1);
+        mLayoutManager = new StaggeredGridLayoutManager(2, 1);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -80,7 +83,7 @@ public class PhotoListFragment extends Fragment implements MyView {
                             && firstVisibleItemPosition[0] >= 0
                             && totalItemCount >= PAGE_SIZE) {
                         ++mCurrentPage;
-                        mViewModel.onLoadData(mCurrentPage);
+                        mUnsplashViewModel.onLoadData(mCurrentPage);
                     }
                 }
             }
@@ -88,8 +91,15 @@ public class PhotoListFragment extends Fragment implements MyView {
 
         mRecyclerView.addOnScrollListener(onScrollListener);
 
-        mViewModel = new UnsplashViewModel(this);
-        mViewModel.onLoadData(mCurrentPage);
+        mUnsplashViewModel = ViewModelProviders.of(this).get(UnsplashViewModel.class);
+        mUnsplashViewModel.onLoadData(mCurrentPage);
+
+        mUnsplashViewModel.getCollection().observe(this, new Observer<List<UnsplashEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<UnsplashEntity> entityList) {
+                mAdapter.addItems(entityList);
+            }
+        });
 
         return mBinding.getRoot();
     }
